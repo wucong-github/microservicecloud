@@ -28,7 +28,7 @@ public class DeptClientServiceFallbackFactory implements FallbackFactory<DeptCli
             @Override
             public Dept get(Long id) {
                 return new Dept().setDeptno(id)
-                        .setDname("id名:" + id + "没有对应信息服务熔断，本地备用方法")
+                        .setDname("id名:" + id + "没有对应信息，服务降级，本地备用方法")
                         .setDb_source("no mysql");
             }
         };
