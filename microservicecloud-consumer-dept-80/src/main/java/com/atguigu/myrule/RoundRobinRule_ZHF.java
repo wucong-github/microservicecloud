@@ -9,12 +9,14 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RoundRobinRule_ZHF  extends AbstractLoadBalancerRule {
 
-    private int total = 0;
-    private int currentIndex = 0;
+
+    private int currentIndex = 0;  // 当前访问服务器的下标
+    private int total = 0;  // 访问当前服务器的次数
 
 
     /**
-     * Randomly choose from all living servers
+     *   choose from all living servers
+     *   服务选择方法
      */
     public Server choose(ILoadBalancer lb, Object key) {
         if (lb == null) {
@@ -28,8 +30,11 @@ public class RoundRobinRule_ZHF  extends AbstractLoadBalancerRule {
                 return null;
             }
             /**
-             *   80微服务启动时，会去读取eureka上的注册表信息，RestTemplate 进行负载均衡
-             *   lb就是微服务相关信息 ，从中获取服务器列表  getReachableServers
+             *   80微服务启动时，默认配置
+             *    #是否检索服务(默认为true)
+             *    eureka.client.fetch-registry= true
+             *    所以会去读取eureka上的注册表信息，
+             *   lb就是微服务相关信息 ，从中获取可用的服务器列表  getReachableServers
              *
              */
             List<Server> upList = lb.getReachableServers();
@@ -38,8 +43,7 @@ public class RoundRobinRule_ZHF  extends AbstractLoadBalancerRule {
             int serverCount = allList.size();
             if (serverCount == 0) {
                 /*
-                 * No servers. End regardless of pass, because subsequent passes
-                 * only get more restrictive.
+                 *  没有服务器，直接返回null 结束
                  */
                 return null;
             }
