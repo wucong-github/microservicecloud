@@ -19,7 +19,7 @@ public class ConfigBean {
     }
 
 
-    /*@Bean
+   /*  @Bean
     public IRule myRule(){
         return new RandomRule();  // 用我们重新选择的随机算法，替代轮询
     }*/

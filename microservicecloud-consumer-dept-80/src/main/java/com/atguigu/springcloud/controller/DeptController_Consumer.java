@@ -10,6 +10,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+
+
 @RestController
 public class DeptController_Consumer {
 
