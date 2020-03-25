@@ -3,6 +3,7 @@ package com.atguigu.springcloud.service;
 import com.atguigu.springcloud.entities.Dept;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -14,10 +15,14 @@ import java.util.List;
  * @Version 1.0
  */
 
-@FeignClient(value = "MICROSERVICECLOUD-DEPT")
+@FeignClient(value = "MICROSERVICECLOUD-DEPT", fallbackFactory = DeptClientServiceFallbackFactory.class)
 public interface DeptClientService {
 
     @GetMapping("/dept/list")
     public List<Dept> list();
+
+
+    @GetMapping("/dept/get/{id}")
+    public Dept get(@PathVariable("id") Long id) ;
 
 }

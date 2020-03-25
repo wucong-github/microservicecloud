@@ -1,7 +1,6 @@
 package com.atguigu.springcloud.dao;
 
 import com.atguigu.springcloud.entities.Dept;
-import feign.hystrix.FallbackFactory;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

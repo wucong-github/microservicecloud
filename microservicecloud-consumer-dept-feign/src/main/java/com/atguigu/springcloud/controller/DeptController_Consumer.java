@@ -4,6 +4,7 @@ import com.atguigu.springcloud.entities.Dept;
 import com.atguigu.springcloud.service.DeptClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -22,6 +23,12 @@ public class DeptController_Consumer {
     public List<Dept> list() {
 
         return deptFeign.list();
+    }
+
+
+    @GetMapping("/consumer/get/{id}")
+    public Dept get(@PathVariable("id") Long id) {
+        return deptFeign.get(id);
     }
 
 
