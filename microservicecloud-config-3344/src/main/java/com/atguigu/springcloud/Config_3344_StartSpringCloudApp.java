@@ -7,7 +7,7 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 
 
 /**
- *
+ *  @EnableConfigServer  开启Config服务端 服务端可以访问远程库
  */
 @SpringBootApplication
 @EnableConfigServer
